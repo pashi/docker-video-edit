@@ -1,12 +1,11 @@
 FROM ubuntu:14.04
 MAINTAINER Pasi Lammi <pasi.lammi@iki.fi>
 RUN apt-get update
-RUN sudo apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev python-pip
-RUN sudo apt-get install -y git
+RUN apt-get -y upgrade
+RUN apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev python-pip git curl
 RUN pip install av
 RUN pip install moviepy
-RUN apt-get install -y curl
-RUN curl 'https://github.com/imageio/imageio-binaries/raw/master/ffmpeg/ffmpeg.linux64' > /usr/bin/ffmpeg.linux64
+RUN curl 'https://raw.githubusercontent.com/imageio/imageio-binaries/master/ffmpeg/ffmpeg.linux64' > /usr/bin/ffmpeg.linux64
 RUN curl 'https://raw.githubusercontent.com/pashi/scripts/master/python/video_to_frames.py' > /usr/bin/video_to_frames.py
 RUN ln -s /usr/bin/ffmpeg.linux64 /usr/bin/ffmpeg
 RUN chmod +x /usr/bin/ffmpeg.linux64 /usr/bin/video_to_frames.py
